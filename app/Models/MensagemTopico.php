@@ -8,8 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class MensagemTopico extends Model
 {
     use HasFactory;
-    public function mensagens()
-    {
-        return $this->belongsToMany(Mensagem::class);
-    }
+
 }

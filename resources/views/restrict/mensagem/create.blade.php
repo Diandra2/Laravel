@@ -1,23 +1,23 @@
 @extends('restrict.layout')
 
 @section('content')
-@if(count($erros) > 0)
+@if(count($errors)>0)
 <ul class="validator">
-    @foreach($erros->all() as $error)
-    <li>{{$error}}</li>
+    @foreach($error->all() as $error)
+    <li>{{error}}</li>
     @endforeach
 </ul>
 @endif
-<form method="$_POST" action="{{url('mensagem)'}}" enctype="multipart/form-data">
+<form method="POST" action="{{url('mensagem')}}" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div>
-        <label for="titulo">Titulo</label>
-        <input type="text" name="titulo" id="titulo" value="{{ old('titulo') }}" require/>
+        <label for="titulo">Título</label>
+        <input type="text" name="titulo" id="titulo" value="{{ old('titulo') }}" required />
     </div>
     <div>
-        <label for="msg">Mensagem</label>
-        <input type="text" name="titulo" id="titulo" value="{{ old('titulo') }}" require/>
+        <label for="msg">Menssagem</label>
+        <textarea name="mensagem" id="msg" required>{{ old('mensagem') }} </textarea>
     </div>
     <div>
         <label>

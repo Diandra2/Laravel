@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="={{ str_relace('_', '_', app ()->getLocale()) }}">
+<html lang="={{ str_replace('_', '_', app ()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" cntent="IE=edge">
     <meta name="viewport" content="width, initial-scale=1.0">
     <tile>Reuse</tile>
-    <link rel="stylesheet" href="{{ asset('css/restict/estilo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/restrict/estilo.css') }}">
 </head>
 
 <body>
@@ -20,13 +20,13 @@
                     <a href="{{url('/mensagem')}}">Mensagem</a>
                 </li>
                 <li>
-                    <a href="{{url('/dashboard)}}">Usuários</a>
+                    <a href="{{url('/dashboard')}}">Usuários</a>
                 </li>
             </ul>
         </nav>
     </header>
     <main>
-        @yield('contente')
+        @yield('content')
     </main>
 </body>
 

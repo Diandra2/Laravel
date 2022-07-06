@@ -1,8 +1,8 @@
-@extends('restric.layout')
+@extends('restrict.layout')
 
 @section('content')
 <div>
-    <a href="={{url{'mensagem/create'}}}" class="button">Adicionar</a>
+    <a href="{{url('mensagem/create')}}" class="button">Adicionar</a>
 </div>
 <table>
     <thead>
@@ -16,34 +16,34 @@
         </tr>
     </thead>
     <tbody>
-    @foreach{$mensagens as $mensagem}
-<tr>
-    <td>{{$mensagem->user_>name}}</td>
-    <td>{{$mensagem->titulo}}</td>
-    <td>{{$mensagem->mensagem}}</td>
-    <td>
-        @if($mensagem->topicos)
-        @foreach($mensagem->topicos as $topico)
-        <div>{{$topico->topico}}</div>
-        @endforeach
-        @endif
-    </td>
-    <td>
-        <a href="{{route('mensagem.edit', $mensagem->)}}" class="button">
-            Editar
-        </a>
-    </td>
+    @foreach($mensagens as $mensagem)
+        <tr>
+            <td>{{$mensagem->user->name}}</td>
+            <td>{{$mensagem->titulo}}</td>
+            <td>{{$mensagem->mensagem}}</td>
             <td>
-                <form method="$_POST" action="{{route('mensagem.destroy', $mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="button">
-                    Remover
-                </button>    
-            </form>
+                @if($mensagem->topicos)
+                @foreach($mensagem->topicos as $topico)
+                <div>{{$topico->topico}}</div>
+                @endforeach
+                @endif
+            </td>
+            <td>
+                <a href="{{route('mensagem.edit', $mensagem->id)}}" class="button">
+                    Editar
+                </a>
+            </td>
+            <td>
+                <form method="POST" action="{{route('mensagem.destroy', $mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button">
+                        Remover
+                    </button>
+                </form>
             </td>
         </tr>
         @endforeach
     </tbody>
-</table>    
+</table>
 @endsection
