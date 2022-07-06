@@ -12,6 +12,7 @@ trait ApiResponse
             'data' => $data
         ], $code);
     }
+
     protected function error(string $message = null, int $code, $data = null)
     {
         return response()->json([
