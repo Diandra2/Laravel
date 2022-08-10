@@ -2,7 +2,7 @@
 
 @section('content')
 <div>
-    <a href="{{url{'topico/create'}}}" class="button">Adicionar</a>
+    <a href="{{url('topico/create')}}" class="button">Adicionar</a>
 </div>
 <table>
     <thead>
@@ -17,7 +17,7 @@
      <tr>
          <td>{{$topico->topico}}</td>
          <td>
-             <a href="{{route('topico.edit', $topico->id}}" class="button">
+             <a href="{{route('topico.edit', $topico->id)}}" class="button">
                  Editar
              </a>
           </td>

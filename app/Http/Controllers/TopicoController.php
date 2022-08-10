@@ -14,8 +14,8 @@ class TopicoController extends Controller
      */
     public function index()
     {
-        $topico = Topico::all();
-        return view("restict/topico", compact('topicos'));
+        $topicos = Topico::all();
+        return view("restrict/topico", compact('topicos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TopicoController extends Controller
      */
     public function create()
     {
-        return view("restict/topico/create");
+        return view("restrict/topico/create");
     }
 
     /**

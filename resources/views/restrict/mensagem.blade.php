@@ -11,6 +11,7 @@
             <th>Título</th>
             <th>Mensagem</th>
             <th>Tópicos</th>
+            <th>Imagem</th>
             <th>Editar</th>
             <th>Remover</th>
         </tr>
@@ -29,6 +30,8 @@
                 @endif
             </td>
             <td>
+                <img scr="{{Storage::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg" />
+            </td>
                 <a href="{{route('mensagem.edit', $mensagem->id)}}" class="button">
                     Editar
                 </a>
