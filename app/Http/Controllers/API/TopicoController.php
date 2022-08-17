@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use APP\Http\Controllers\Controlles;
+use App\Models\Topico;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+
 
 class TopicoController extends Controller
 {
@@ -14,7 +17,8 @@ class TopicoController extends Controller
      */
     public function index()
     {
-        //
+        $topicos = Topico::all();
+        return $this->success($topicos);
     }
 
     /**
@@ -35,7 +39,18 @@ class TopicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'topico' => 'required|max:255',
+        ]);
+        if ($validated) {
+            try {
+                $topico = new Topico();
+            $topico->topico = $request->get('topico');
+            $topico->save();
+            return $this->success($topico);
+        } catch (\Throwable $t) {
+            return $this->error("Error ao cadastrar o tópico!!!", 401, $th->getMessage());
+        }
     }
 
     /**
@@ -46,7 +61,12 @@ class TopicoController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $topico = Topico::findOrFail($id);
+            return $this->success($topico);
+        } catch (\Throwable $t) {
+            return $this->error("Tópico não encontrado!!!", 401, $th->getMessage());
+        } 
     }
 
     /**
