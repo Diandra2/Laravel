@@ -22,7 +22,7 @@
             <td>{{$mensagem->user->name}}</td>
             <td>{{$mensagem->titulo}}</td>
             <td>{{$mensagem->mensagem}}</td>
-            <td>
+            <td>{{$mensagem->topicos}}
                 @if($mensagem->topicos)
                 @foreach($mensagem->topicos as $topico)
                 <div>{{$topico->topico}}</div>
@@ -30,8 +30,10 @@
                 @endif
             </td>
             <td>
-                <img scr="{{Storage::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg" />
+                <!-- <img src="{{Storage::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg" /> -->
+                <img src="{{$mensagem->imagem}}" alt="{{$mensagem->titulo}}" class="showImg" />
             </td>
+            <td>
                 <a href="{{route('mensagem.edit', $mensagem->id)}}" class="button">
                     Editar
                 </a>

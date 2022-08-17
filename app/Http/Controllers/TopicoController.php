@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use APP\Http\Controllers\Controlles;
 use App\Models\Topico;
+use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
 class TopicoController extends Controller
@@ -15,7 +17,7 @@ class TopicoController extends Controller
     public function index()
     {
         $topicos = Topico::all();
-        return view("restrict/topico", compact('topicos'));
+        return $this->success($topicos);
     }
 
     /**
@@ -40,10 +42,13 @@ class TopicoController extends Controller
             'topico' => 'required|max:255',
         ]);
         if ($validated) {
-            $topico = new Topico();
+            try {
+                $topico = new Topico();
             $topico->topico = $request->get('topico');
             $topico->save();
-            return redirect('topico');
+            return $this->success($topico);
+        } catch (\Throwable $t) {
+            return $this->error("Error ao cadastrar o tópico!!!", 401, $th->getMessage());
         }
     }
 

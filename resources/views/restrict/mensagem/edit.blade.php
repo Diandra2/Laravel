@@ -3,12 +3,12 @@
 @section('content')
 @if(count($errors)>0)
 <ul class="validator">
-    @foreach($error->all() as $error)
-    <li>{{error}}</li>
+    @foreach($errors->all() as $error)
+    <li>{{$error}}</li>
     @endforeach
 </ul>
 @endif
-<form method="POST" action="{{url('mensagem', $mensagem->id)}}">
+<form method="POST" action="{{url('mensagem', $mensagem->id)}}"  enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div>
@@ -37,7 +37,8 @@
     <div>
         <label for="img">Imagem</label>
         <input type="file" name="imagem" id="img" accept="image/*" required />
-        <img scr="{{Storege::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg" />
+        <!-- <img src="{{Storage::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg" /> -->
+        <img scr="{{$mensagem->imagem}}" alt="{{$mensagem->titulo}}" class="showImg" />
     </div>
     <button type="submit" class="button">Salvar</button>
 </form>
