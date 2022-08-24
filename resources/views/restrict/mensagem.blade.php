@@ -22,7 +22,7 @@
             <td>{{$mensagem->user->name}}</td>
             <td>{{$mensagem->titulo}}</td>
             <td>{{$mensagem->mensagem}}</td>
-            <td>{{$mensagem->topicos}}
+            <td>
                 @if($mensagem->topicos)
                 @foreach($mensagem->topicos as $topico)
                 <div>{{$topico->topico}}</div>
