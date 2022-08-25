@@ -17,13 +17,13 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($mensagens as $mensagem)
+        @foreach($mensagens as $mensagem)
         <tr>
             <td>{{$mensagem->user->name}}</td>
             <td>{{$mensagem->titulo}}</td>
             <td>{{$mensagem->mensagem}}</td>
             <td>
-                @if($mensagem->topicos)
+                @if($mensagem->topico)
                 @foreach($mensagem->topicos as $topico)
                 <div>{{$topico->topico}}</div>
                 @endforeach
@@ -34,18 +34,18 @@
                 <img src="{{$mensagem->imagem}}" alt="{{$mensagem->titulo}}" class="showImg" />
             </td>
             <td>
-                <a href="{{route('mensagem.edit', $mensagem->id)}}" class="button">
+                <a href="{{route('mensagem.edit',$mensagem->id)}}" class="button">
                     Editar
                 </a>
             </td>
             <td>
-                <form method="POST" action="{{route('mensagem.destroy', $mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
+                <form method="POST" action="{{route('mensagem.destroy',$mensagem->id)}}" onsubmit="return confirm('tem certeza?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button">
                         Remover
                     </button>
-                </form>
+              </form>    
             </td>
         </tr>
         @endforeach

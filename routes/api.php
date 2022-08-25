@@ -1,6 +1,7 @@
 <?php
-
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\MensagemController;
+use App\Http\Controllers\API\TopicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -13,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -21,4 +21,6 @@ Route::post('/login', [AuthController::class, 'login']);
 // });
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout']);
-});
+    Route::resource("topico", TopicoController::class);
+    Route::resource("mensagem", MensagemController::class);
+   });
