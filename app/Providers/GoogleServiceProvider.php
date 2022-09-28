@@ -36,6 +36,7 @@ class GoogleServiceProvider extends ServiceProvider
                 $client->setClientId($config['clientId']);
                 $client->setClientSecret($config['clientSecret']);
                 $client->refreshToken($config['refreshToken']);
+                $client->setAccessToken($config['accessToken']);
                 
                 $service = new \Google\Service\Drive($client);
                 $adapter = new \Masbug\Flysystem\GoogleDriveAdapter($service, $config['folder'] ?? '/', $options);
@@ -45,8 +46,6 @@ class GoogleServiceProvider extends ServiceProvider
             });
         } catch(\Exception $e) {
             // your exception handling logic
-            dd($e);
         }
-        
     }
 }
